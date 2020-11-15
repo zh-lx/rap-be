@@ -4,7 +4,8 @@
   "description": "押韵大师的服务端项目，语言为nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,11 @@
   "keywords": [
     "rap"
   ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "author": "zhoulixiang",
   "license": "ISC",
   "bugs": {
@@ -32,6 +38,8 @@
     "sequelize": "^5.21.5"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3"
+    "babel-core": "^6.26.3",
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0"
   }
 }
