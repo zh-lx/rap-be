@@ -1,4 +1,4 @@
-module.exports.No = (arr) => {
+module.exports.haveInvaild = (arr) => {
   let flag = false;
   for (let i = 0; i < arr.length; i++) {
     const param = arr[i];
@@ -8,4 +8,4 @@ module.exports.No = (arr) => {
     }
   }
   return flag;
-}
+};

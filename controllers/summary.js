@@ -2,7 +2,7 @@ const BaseController = require('./base.js');
 const summaryModel = require('../models/summary');
 const { handleWord } = require('../utils/handleWord');
 const { success, paramErr } = require('../utils/response');
-const { No } = require('../utils/type');
+const { haveInvaild } = require('../utils/common');
 
 class SummaryController extends BaseController {
   constructor() {
@@ -32,18 +32,19 @@ module.exports = new SummaryController();
  */
 async function getWords_fn(req, res, next, that) {
   let { word, rap_num, tone_type } = req.query;
-  if (No([word, rap_num, tone_type])) {
-    // 验证参数
+  // 验证参数
+  if (haveInvaild([word, rap_num, tone_type])) {
     paramErr(res);
     return;
   }
-  rap_num = parseInt(rap_num);
-  tone_type = parseInt(tone_type);
+  // word为空直接返回空
   if (word === '') {
     success(res, [[], [], [], []]);
     return;
   }
 
+  rap_num = parseInt(rap_num);
+  tone_type = parseInt(tone_type);
   const result = handleWord(word); // 获取处理后的单词拼音
   // 获取最终要押韵的无音调韵母
   const type_without_tone_arr = result.type_without_tone.split('-');

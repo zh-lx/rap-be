@@ -18,14 +18,3 @@ const handleFile = (file_path) => {
 };
 
 handleFile('./data/dict.txt');
-// handleFile('./data/THUOCL_animal.txt');
-// handleFile('./data/THUOCL_caijing.txt');
-// handleFile('./data/THUOCL_car.txt');
-// handleFile('./data/THUOCL_chengyu.txt');
-// handleFile('./data/THUOCL_place.txt');
-// handleFile('./data/THUOCL_food.txt');
-// handleFile('./data/THUOCL_it.txt');
-// handleFile('./data/THUOCL_law.txt');
-// handleFile('./data/THUOCL_lishimingren.txt');
-// handleFile('./data/THUOCL_medical.txt');
-// handleFile('./data/THUOCL_poem.txt');
