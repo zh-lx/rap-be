@@ -39,6 +39,11 @@ async function getWords_fn(req, res, next, that) {
   }
   rap_num = parseInt(rap_num);
   tone_type = parseInt(tone_type);
+  if (word === '') {
+    success(res, [[], [], [], []]);
+    return;
+  }
+
   const result = handleWord(word); // 获取处理后的单词拼音
   // 获取最终要押韵的无音调韵母
   const type_without_tone_arr = result.type_without_tone.split('-');
@@ -51,35 +56,35 @@ async function getWords_fn(req, res, next, that) {
   // 查数据库
   try {
     // 查询长度为2的词
-    const getWordLengthEq2 = new Promise(resolve => {
+    const getWordLengthEq2 = new Promise((resolve) => {
       resolve(
         summaryModel.getBackUps(word, type_with_tone, type_without_tone, 2, 140)
       );
     });
     // 查询长度为3的词
-    const getWordLengthEq3 = new Promise(resolve => {
+    const getWordLengthEq3 = new Promise((resolve) => {
       resolve(
         summaryModel.getBackUps(word, type_with_tone, type_without_tone, 3, 100)
       );
     });
     // 查询长度为4的词
-    const getWordLengthEq4 = new Promise(resolve => {
+    const getWordLengthEq4 = new Promise((resolve) => {
       resolve(
         summaryModel.getBackUps(word, type_with_tone, type_without_tone, 4, 80)
       );
     });
     // 查询长度大于5的词
-    const getWordLengthGte5 = new Promise(resolve => {
+    const getWordLengthGte5 = new Promise((resolve) => {
       resolve(
         summaryModel.getBackUps(word, type_with_tone, type_without_tone, 5, 40)
       );
     });
-    const data = await Promise.all(
-      [getWordLengthEq2, getWordLengthEq3, getWordLengthEq4, getWordLengthGte5],
-      results => {
-        return results;
-      }
-    );
+    const data = await Promise.all([
+      getWordLengthEq2,
+      getWordLengthEq3,
+      getWordLengthEq4,
+      getWordLengthGte5,
+    ]);
     success(res, data);
   } catch (err) {
     next(err);
