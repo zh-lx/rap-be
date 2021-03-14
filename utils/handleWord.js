@@ -7,10 +7,10 @@ module.exports.handleWord = (word = '', rate = 0) => {
   const final_with_tone_arr = pinyin(word, { type: 'array', pattern: 'final' }); // 带拼音韵母
   const final_without_tone_arr = pinyin(word, {
     type: 'array',
-    tone: false,
+    toneType: 'none',
     pattern: 'final',
   }); // 不带拼音韵母
-  const tone_arr = pinyin(word, { type: 'array', pattern: 'num' }); // 音调列表
+  const tone_arr = pinyin(word, { type: 'array', toneType: 'num' }); // 音调列表
   let type_with_tone_arr = [];
   let type_without_tone_arr = [];
   for (let index = 0; index < length; index++) {
@@ -38,9 +38,13 @@ module.exports.handleWord = (word = '', rate = 0) => {
     word,
     rate,
     length,
-    initial: initial_arr.join('-'),
-    final_with_tone: final_with_tone_arr.join('-'),
-    final_without_tone: final_without_tone_arr.join('-'),
+    initial: initial_arr instanceof Array ? initial_arr.join('-') : '',
+    final_with_tone:
+      final_with_tone_arr instanceof Array ? final_with_tone_arr.join('-') : '',
+    final_without_tone:
+      final_without_tone_arr instanceof Array
+        ? final_without_tone_arr.join('-')
+        : '',
     type_with_tone: type_with_tone_arr.join('-'),
     type_without_tone: type_without_tone_arr.join('-'),
   };
