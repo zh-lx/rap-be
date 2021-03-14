@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "start:prod": "pm2 start ./pm2.json --name rap-be-prod --env production",
+    "start:test": "pm2 start ./pm2.json --name rap-be-test --env test",
+    "start:dev": "pm2 start ./pm2.json --name rap-be-dev --env development"
   },
   "repository": {
     "type": "git",
@@ -34,7 +37,7 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
-    "pinyin-pro": "^1.0.6",
+    "pinyin-pro": "^2.0.8",
     "sequelize": "^5.21.5"
   },
   "devDependencies": {
