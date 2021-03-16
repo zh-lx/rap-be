@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -9,7 +8,7 @@ app.use(
   cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   })
 );
@@ -17,7 +16,7 @@ app.use(
 // 引入body-parser包
 app.use(bodyParser.json());
 
-app.use('/rap/summary', require('./routers/summary'));
+app.use('/rap/summary', require('./routers/word'));
 
 // 错误处理中间件
 app.use(function (req, res, next) {

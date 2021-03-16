@@ -1,6 +1,6 @@
 // 处理txt并初始化数据库，可无需此文件
 const fs = require('fs');
-const { handleWord } = require('./handleWord');
+const { getWordInfo } = require('./word');
 const SummaryController = require('../controllers/summary.js');
 
 const handleFile = (file_path) => {
@@ -11,7 +11,7 @@ const handleFile = (file_path) => {
   lines.forEach((line) => {
     line = line.replace(/\s+/, ' ');
     const item = line.split(' ');
-    result.push(handleWord(item[0], Number(item[1]) || 0));
+    result.push(getWordInfo(item[0], Number(item[1]) || 0));
     console.log(++i);
   });
   SummaryController.addWords(result);

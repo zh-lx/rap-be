@@ -1,7 +1,7 @@
 const { pinyin } = require('pinyin-pro');
 const { initial_list, final_list } = require('../data/pinyin');
 
-module.exports.handleWord = (word = '', rate = 0) => {
+module.exports.getWordInfo = (word = '', rate = 0) => {
   const length = word.length;
   const initial_arr = pinyin(word, { type: 'array', pattern: 'initial' }); // 声母
   const final_with_tone_arr = pinyin(word, { type: 'array', pattern: 'final' }); // 带拼音韵母

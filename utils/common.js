@@ -1,4 +1,4 @@
-module.exports.haveInvaild = (arr) => {
+module.exports.paramInvaild = (arr) => {
   let flag = false;
   for (let i = 0; i < arr.length; i++) {
     const param = arr[i];
