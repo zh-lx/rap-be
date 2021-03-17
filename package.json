@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz",
-    "start:prod": "pm2 start ./pm2.json --name rap-be-prod --env production",
-    "start:test": "pm2 start ./pm2.json --name rap-be-test --env test",
-    "start:dev": "pm2 start ./pm2.json --name rap-be-dev --env development"
+    "start:prod": "pm2 start ./app.js --name rap_be_prod -- production",
+    "start:test": "pm2 start ./app.js --name rap_be_test -- test",
+    "restart:prod": "pm2 restart ./app.js --name rap_be_prod -- production",
+    "restart:test": "pm2 restart ./app.js --name rap_be_test -- test"
   },
   "repository": {
     "type": "git",

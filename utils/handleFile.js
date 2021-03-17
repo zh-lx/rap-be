@@ -1,7 +1,7 @@
 // 处理txt并初始化数据库，可无需此文件
 const fs = require('fs');
 const { getWordInfo } = require('./word');
-const SummaryController = require('../controllers/summary.js');
+const WordService = require('../service/word');
 
 const handleFile = (file_path) => {
   const data = fs.readFileSync(file_path, 'utf-8');
@@ -14,7 +14,7 @@ const handleFile = (file_path) => {
     result.push(getWordInfo(item[0], Number(item[1]) || 0));
     console.log(++i);
   });
-  SummaryController.addWords(result);
+  WordService.addWords(result);
 };
 
-handleFile('./data/dict.txt');
+handleFile('./data/test.txt');

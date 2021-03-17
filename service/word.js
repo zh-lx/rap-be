@@ -1,13 +1,13 @@
 let Sequelize = require('sequelize');
 let Op = Sequelize.Op;
 const WordModel = require('../models/word');
-const { paramInvaild } = require('../utils/common');
+const { paramsInvalid } = require('../utils/common');
 const { paramErr, success, systemErr } = require('../utils/response');
 const { getWordInfo } = require('../utils/word');
 class WordService {
-  async getWords({ word, rap_num, tone_type }) {
+  async getSummary({ word, rap_num, tone_type }) {
     // 参数校验
-    if (paramInvaild([word, rap_num, tone_type])) {
+    if (paramsInvalid([word, rap_num, tone_type])) {
       return paramErr();
     }
     // 为空直接返回
@@ -32,7 +32,7 @@ class WordService {
       // 查询长度为2的词
       const getWordLengthEq2 = new Promise((resolve) => {
         resolve(
-          this.findWordsFromModel({
+          this.getWords({
             word,
             type_with_tone,
             type_without_tone,
@@ -44,7 +44,7 @@ class WordService {
       // 查询长度为3的词
       const getWordLengthEq3 = new Promise((resolve) => {
         resolve(
-          this.findWordsFromModel({
+          this.getWords({
             word,
             type_with_tone,
             type_without_tone,
@@ -56,7 +56,7 @@ class WordService {
       // 查询长度为4的词
       const getWordLengthEq4 = new Promise((resolve) => {
         resolve(
-          this.findWordsFromModel({
+          this.getWords({
             word,
             type_with_tone,
             type_without_tone,
@@ -68,7 +68,7 @@ class WordService {
       // 查询长度大于5的词
       const getWordLengthGte5 = new Promise((resolve) => {
         resolve(
-          this.findWordsFromModel({
+          this.getWords({
             word,
             type_with_tone,
             type_without_tone,
@@ -89,7 +89,11 @@ class WordService {
     }
   }
 
-  findWordsFromModel({ word, type_with_tone, type_without_tone, length, num }) {
+  async addWords(words) {
+    return WordModel.createBatch(words);
+  }
+
+  getWords({ word, type_with_tone, type_without_tone, length, num }) {
     return WordModel.findAll({
       where: {
         word: { [Op.ne]: word },

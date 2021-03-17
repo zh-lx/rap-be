@@ -3,6 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 
+const { PORT } = require('./config/env');
+
 // 配置CORS相关
 app.use(
   cors({
@@ -23,6 +25,6 @@ app.use(function (req, res, next) {
   res.json({ code: 404, err_tip: 'not found', data: null });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server start on ${process.env.PORT}...`);
+app.listen(PORT, () => {
+  console.log(`Server start on ${PORT}...`);
 });
