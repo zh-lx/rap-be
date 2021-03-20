@@ -1,17 +1,23 @@
-module.exports.success = (res, data) => {
-  const obj = {
+module.exports.success = (data) => {
+  return {
     code: 0,
-    message: 'success',
-    data: data
+    err_tips: 'success',
+    data: data,
   };
-  res.json(obj);
 };
 
-module.exports.paramErr = res => {
-  const obj = {
+module.exports.paramErr = () => {
+  return {
     code: 400,
-    message: '参数错误',
-    data: null
+    err_tips: '参数错误',
+    data: null,
   };
-  res.json(obj);
+};
+
+module.exports.systemErr = (err) => {
+  return {
+    code: 500,
+    err_tips: err,
+    data: null,
+  };
 };
