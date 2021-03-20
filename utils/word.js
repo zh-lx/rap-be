@@ -10,7 +10,11 @@ module.exports.getWordInfo = (word = '', rate = 0) => {
     toneType: 'none',
     pattern: 'final',
   }); // 不带拼音韵母
-  const tone_arr = pinyin(word, { type: 'array', toneType: 'num' }); // 音调列表
+  const tone_arr = pinyin(word, {
+    type: 'array',
+    toneType: 'num',
+    pattern: 'num',
+  }); // 音调列表
   let type_with_tone_arr = [];
   let type_without_tone_arr = [];
   for (let index = 0; index < length; index++) {
