@@ -1,1 +1,1 @@
-module.exports.PORT = process.env.args === 'test' ? 8802 : 8801;
+module.exports.PORT = process.env.args === 'production' ? 8801 : 8802;
