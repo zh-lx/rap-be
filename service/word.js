@@ -89,6 +89,44 @@ class WordService {
     }
   }
 
+  async getWords({ word, rap_num, tone_type, length }) {
+    // 参数校验
+    if (paramsInvalid([word, rap_num, tone_type, length])) {
+      return paramErr();
+    }
+    // 为空直接返回
+    if (word === '') {
+      return success([[], [], [], []]);
+    }
+    rap_num = parseInt(rap_num);
+    tone_type = parseInt(tone_type);
+    const result = getWordInfo(word); // 获取处理后的单词拼音
+    // 获取最终要押韵的无音调韵母
+    let type_without_tone = result.type_without_tone
+      .split('-')
+      .slice(-rap_num)
+      .join('-');
+    // 获取最终要押韵的有音调韵母
+    const type_with_tone_arr = result.type_with_tone.split('-');
+    const num = tone_type > 1 ? rap_num : tone_type;
+    let type_with_tone =
+      num === 0 ? '' : type_with_tone_arr.slice(-num).join('-');
+    // 查数据库
+    try {
+      // 查询长度为2的词
+      const data = await this.getWordsFromModel({
+        word,
+        type_with_tone,
+        type_without_tone,
+        length,
+        num: 100,
+      });
+      return success(data);
+    } catch (err) {
+      return systemErr(err);
+    }
+  }
+
   async addWords(words) {
     return WordModel.createBatch(words);
   }

@@ -19,6 +19,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use('/rap/summary', require('./routers/word'));
+app.use('/api/words', require('./routers/word'));
 
 // 错误处理中间件
 app.use(function (req, res, next) {
