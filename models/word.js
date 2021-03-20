@@ -3,7 +3,7 @@ const BaseModel = require('./base.js');
 let Op = Sequelize.Op;
 class WordModel extends BaseModel {
   constructor() {
-    super('summary', {
+    super('word', {
       word: { type: Sequelize.STRING },
       rate: { type: Sequelize.INTEGER },
       initial: { type: Sequelize.STRING },
