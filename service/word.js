@@ -96,7 +96,7 @@ class WordService {
     }
     // 为空直接返回
     if (word === '') {
-      return success([[], [], [], []]);
+      return success([]);
     }
     rap_num = parseInt(rap_num);
     tone_type = parseInt(tone_type);
